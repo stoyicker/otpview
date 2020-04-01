@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="default_boxTextSize">12sp</dimen>
+  <integer name="default_boxInputType">0x00080001</integer>
+  <integer name="default_boxAmount">4</integer>
+  <dimen name="default_boxMargin_start">4dp</dimen>
+  <dimen name="default_boxMargin_top">4dp</dimen>
+  <dimen name="default_boxMargin_end">4dp</dimen>
+  <dimen name="default_boxMargin_bottom">4dp</dimen>
+  <dimen name="default_boxPadding_start">0dp</dimen>
+  <dimen name="default_boxPadding_top">0dp</dimen>
+  <dimen name="default_boxPadding_end">0dp</dimen>
+  <dimen name="default_boxPadding_bottom">0dp</dimen>
+  <bool name="default_masked">false</bool>
+</resources>

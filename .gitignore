@@ -3,8 +3,9 @@
 .idea
 .DS_Store
 build
+out
 captures
 dependencyReport
-staticAnalysisReport/
 local.properties
 *.log
+*.gpg

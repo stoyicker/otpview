@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="OtpView">
+    <attr name="otp_boxTextColor" format="reference|color" /> <!-- Color for the text in each box. You can use a ColorStateList with an entry for state state_focused to customize differently the active box -->
+    <attr name="otp_boxTextSize" format="dimension" /> <!-- Size for the text in each box -->
+    <attr name="otp_text" format="string" /> <!-- Text to populate the view. One char goes into every box, while there are chars and as long as they fit -->
+    <attr name="otp_boxInputType"> <!-- InputType for the IME shown by interacting with the boxes -->
+      <flag name="alphanumeric" value="0x00080001" /> <!-- text|textNoSuggestions, for alphanumeric, case-sensitive codes -->
+      <flag name="alphanumericAllCaps" value="0x00081001" /> <!-- text|textCapCharacters|textNoSuggestions, for alphanumeric, all caps codes -->
+      <flag name="numeric" value="0x00000002" /> <!-- number, for number-only codes -->
+    </attr>
+    <attr name="otp_boxAmount" format="integer" /> <!-- The amount of boxes needed. Boxes are always distributed across a single row (by default, can be a column if the android:orientation attribute is set to vertical), and uniformly as to satisfy this attribute, horizontal box margins and the padding of the view -->
+    <attr name="otp_boxMargin_start" format="dimension" /> <!-- Start margin for each box -->
+    <attr name="otp_boxMargin_top" format="dimension" /> <!-- Top margin for each box -->
+    <attr name="otp_boxMargin_end" format="dimension" /> <!-- End margin for each box -->
+    <attr name="otp_boxMargin_bottom" format="dimension" /> <!-- Bottom margin for each box -->
+    <attr name="otp_boxPadding_start" format="dimension" /> <!-- Start padding for each box -->
+    <attr name="otp_boxPadding_top" format="dimension" /> <!-- Top padding for each box -->
+    <attr name="otp_boxPadding_end" format="dimension" /> <!-- End padding for each box -->
+    <attr name="otp_boxPadding_bottom" format="dimension" /> <!-- Bottom padding for each box -->
+    <attr name="otp_boxBackground" format="reference|color" /> <!-- Background for each box. You can use a StateListDrawable with an entry for state state_focused to customize differently the active box -->
+    <attr name="otp_masked" format="boolean" /> <!-- true to mask the input. false otherwise -->
+    <attr name="otp_boxMask" format="reference|color" /> <!-- Drawable to use as mask in each box. You can use a StateListDrawable with an entry for state state_focused to customize differently the active box -->
+  </declare-styleable>
+</resources>
