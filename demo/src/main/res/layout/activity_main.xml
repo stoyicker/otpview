@@ -1,6 +1,785 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="match_parent">
-</androidx.constraintlayout.widget.ConstraintLayout>
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  tools:ignore="HardcodedText,ContentDescription,TooManyViews">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+      android:id="@+id/icon_github"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:onClick="onGithub"
+      android:src="@drawable/ic_github"
+      app:layout_constraintBottom_toBottomOf="@id/otp"
+      app:layout_constraintEnd_toStartOf="@id/otp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@id/otp" />
+
+    <otpview.OtpView
+      android:id="@+id/otp"
+      android:layout_width="150dp"
+      android:layout_height="150dp"
+      android:layout_gravity="center"
+      app:layout_constraintEnd_toStartOf="@id/icon_linkedin"
+      app:layout_constraintStart_toEndOf="@id/icon_github"
+      app:layout_constraintTop_toTopOf="parent"
+      app:otp_boxBackground="@drawable/default_boxBackground"
+      app:otp_boxMask="@drawable/default_boxMask"
+      app:otp_boxTextColor="@color/default_boxTextColor" />
+
+    <ImageView
+      android:id="@+id/icon_linkedin"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:onClick="onLinkedin"
+      android:src="@drawable/ic_linkedin"
+      app:layout_constraintBottom_toBottomOf="@id/otp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toEndOf="@id/otp"
+      app:layout_constraintTop_toTopOf="@id/otp" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fadeScrollbars="false"
+    android:overScrollMode="never">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <TextView
+        android:id="@+id/label_width"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Width:"
+        app:layout_constraintBottom_toBottomOf="@id/button_width_minus"
+        app:layout_constraintEnd_toStartOf="@id/button_width_minus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/button_width_minus" />
+
+      <Button
+        android:id="@+id/button_width_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintEnd_toStartOf="@id/button_width_plus"
+        app:layout_constraintStart_toEndOf="@id/label_width"
+        app:layout_constraintTop_toTopOf="parent" />
+
+      <Button
+        android:id="@+id/button_width_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintEnd_toStartOf="@id/label_height"
+        app:layout_constraintStart_toEndOf="@id/button_width_minus"
+        app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+        android:id="@+id/label_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Height:"
+        app:layout_constraintBottom_toBottomOf="@id/button_height_minus"
+        app:layout_constraintEnd_toStartOf="@id/button_height_minus"
+        app:layout_constraintStart_toEndOf="@id/button_width_plus"
+        app:layout_constraintTop_toTopOf="@id/button_height_minus" />
+
+      <Button
+        android:id="@+id/button_height_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintEnd_toStartOf="@id/button_height_plus"
+        app:layout_constraintStart_toEndOf="@id/label_height"
+        app:layout_constraintTop_toTopOf="parent" />
+
+      <Button
+        android:id="@+id/button_height_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/button_height_minus"
+        app:layout_constraintTop_toTopOf="parent" />
+
+      <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_bounds"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="label_width, button_width_minus, button_width_plus, label_height, button_height_minus, button_height_plus" />
+
+      <TextView
+        android:id="@+id/label_orientation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Orientation:"
+        app:layout_constraintBottom_toBottomOf="@id/button_orientation"
+        app:layout_constraintEnd_toStartOf="@id/button_orientation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/button_orientation" />
+
+      <ToggleButton
+        android:id="@+id/button_orientation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="Vertical"
+        android:textOn="Horizontal"
+        app:layout_constraintEnd_toStartOf="@id/label_direction"
+        app:layout_constraintStart_toEndOf="@id/label_orientation"
+        app:layout_constraintTop_toBottomOf="@id/barrier_bounds" />
+
+      <TextView
+        android:id="@+id/label_direction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Direction:"
+        app:layout_constraintBottom_toBottomOf="@id/button_direction"
+        app:layout_constraintEnd_toStartOf="@id/button_direction"
+        app:layout_constraintStart_toEndOf="@id/button_orientation"
+        app:layout_constraintTop_toTopOf="@id/button_direction" />
+
+      <ToggleButton
+        android:id="@+id/button_direction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="RTL"
+        android:textOn="LTR"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/label_direction"
+        app:layout_constraintTop_toBottomOf="@id/barrier_bounds" />
+
+      <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_direction"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="label_orientation, button_orientation, label_direction, button_direction" />
+
+      <TextView
+        android:id="@+id/label_box_text_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Box text color (color or ColorStateList)"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier_direction" />
+
+      <TextView
+        android:id="@+id/label_box_text_color_inactive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inactive:"
+        app:layout_constraintBottom_toBottomOf="@id/button_box_text_color_inactive"
+        app:layout_constraintEnd_toStartOf="@id/button_box_text_color_inactive"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/button_box_text_color_inactive" />
+
+      <Button
+        android:id="@+id/button_box_text_color_inactive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="#000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
+        android:text="Random"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toStartOf="@id/label_box_text_color_active"
+        app:layout_constraintStart_toEndOf="@id/label_box_text_color_inactive"
+        app:layout_constraintTop_toBottomOf="@id/label_box_text_color" />
+
+      <TextView
+        android:id="@+id/label_box_text_color_active"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Active:"
+        app:layout_constraintBottom_toBottomOf="@id/button_box_text_color_active"
+        app:layout_constraintEnd_toStartOf="@id/button_box_text_color_active"
+        app:layout_constraintStart_toEndOf="@id/button_box_text_color_inactive"
+        app:layout_constraintTop_toTopOf="@id/button_box_text_color_active" />
+
+      <Button
+        android:id="@+id/button_box_text_color_active"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="#000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
+        android:text="Random"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/label_box_text_color_active"
+        app:layout_constraintTop_toBottomOf="@id/label_box_text_color" />
+
+      <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_box_text_color"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="label_box_text_color_inactive, button_box_text_color_inactive, label_box_text_color_active, button_box_text_color_active" />
+
+      <TextView
+        android:id="@+id/label_text_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Box text size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier_box_text_color" />
+
+      <Button
+        android:id="@+id/button_text_size_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintEnd_toStartOf="@id/button_text_size_plus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/label_text_size" />
+
+      <Button
+        android:id="@+id/button_text_size_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/button_text_size_minus"
+        app:layout_constraintTop_toBottomOf="@id/label_text_size" />
+
+      <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_box_text_size"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="button_text_size_minus, button_text_size_plus" />
+
+      <TextView
+        android:id="@+id/label_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier_box_text_size" />
+
+      <EditText
+        android:id="@+id/edittext_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints="none"
+        android:gravity="center"
+        android:hint="Your text…"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="@id/button_text"
+        app:layout_constraintEnd_toStartOf="@id/button_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/button_text" />
+
+      <Button
+        android:id="@+id/button_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/edittext_text"
+        app:layout_constraintTop_toBottomOf="@id/label_text" />
+
+      <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_text"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="label_text, button_text" />
+
+      <TextView
+        android:id="@+id/label_box_input_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Box input type:"
+        app:layout_constraintBottom_toBottomOf="@id/button_box_input_type"
+        app:layout_constraintEnd_toStartOf="@id/button_box_input_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/button_box_input_type" />
+
+      <Button
+        android:id="@+id/button_box_input_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alphanumeric"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/label_box_input_type"
+        app:layout_constraintTop_toBottomOf="@id/barrier_text" />
+
+      <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_box_input_type"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="label_box_input_type, button_box_input_type" />
+
+      <TextView
+        android:id="@+id/label_box_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Box amount"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier_box_input_type" />
+
+      <Button
+        android:id="@+id/button_box_amount_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintEnd_toStartOf="@id/button_box_amount_plus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/label_box_amount" />
+
+      <Button
+        android:id="@+id/button_box_amount_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/button_box_amount_minus"
+        app:layout_constraintTop_toBottomOf="@id/label_box_amount" />
+
+      <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_box_amount"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="button_box_amount_minus, button_box_amount_plus" />
+
+      <TextView
+        android:id="@+id/label_box_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Box background (color, ColorStateList or Drawable)"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier_box_amount" />
+
+      <TextView
+        android:id="@+id/label_box_background_inactive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inactive:"
+        app:layout_constraintBottom_toBottomOf="@id/button_box_background_inactive"
+        app:layout_constraintEnd_toStartOf="@id/button_box_background_inactive"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/button_box_background_inactive" />
+
+      <Button
+        android:id="@+id/button_box_background_inactive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="#000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
+        android:text="Random"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toStartOf="@id/label_box_background_active"
+        app:layout_constraintStart_toEndOf="@id/label_box_background_inactive"
+        app:layout_constraintTop_toBottomOf="@id/label_box_background" />
+
+      <TextView
+        android:id="@+id/label_box_background_active"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Active:"
+        app:layout_constraintBottom_toBottomOf="@id/button_box_background_active"
+        app:layout_constraintEnd_toStartOf="@id/button_box_background_active"
+        app:layout_constraintStart_toEndOf="@id/button_box_background_inactive"
+        app:layout_constraintTop_toTopOf="@id/button_box_background_active" />
+
+      <Button
+        android:id="@+id/button_box_background_active"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="#000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
+        android:text="Random"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/label_box_background_active"
+        app:layout_constraintTop_toBottomOf="@id/label_box_background" />
+
+      <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_box_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="label_box_background_inactive, button_box_background_inactive, label_box_background_active, button_box_background_active" />
+
+      <TextView
+        android:id="@+id/label_box_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Box margin"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier_box_background" />
+
+      <TextView
+        android:id="@+id/label_box_margin_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        app:layout_constraintEnd_toStartOf="@id/label_box_margin_top"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/label_box_margin" />
+
+      <TextView
+        android:id="@+id/label_box_margin_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top"
+        app:layout_constraintEnd_toStartOf="@id/label_box_margin_end"
+        app:layout_constraintStart_toEndOf="@id/label_box_margin_start"
+        app:layout_constraintTop_toBottomOf="@id/label_box_margin" />
+
+      <TextView
+        android:id="@+id/label_box_margin_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="End"
+        app:layout_constraintEnd_toStartOf="@id/label_box_margin_bottom"
+        app:layout_constraintStart_toEndOf="@id/label_box_margin_top"
+        app:layout_constraintTop_toBottomOf="@id/label_box_margin" />
+
+      <TextView
+        android:id="@+id/label_box_margin_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/label_box_margin_end"
+        app:layout_constraintTop_toBottomOf="@id/label_box_margin" />
+
+      <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_labels_box_margins"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="label_box_margin_start, label_box_margin_top, label_box_margin_end, label_box_margin_bottom" />
+
+      <Button
+        android:id="@+id/button_box_margin_start_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintEnd_toStartOf="@id/button_box_margin_start_plus"
+        app:layout_constraintStart_toStartOf="@id/label_box_margin_start"
+        app:layout_constraintTop_toBottomOf="@id/barrier_labels_box_margins" />
+
+      <Button
+        android:id="@+id/button_box_margin_start_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="@id/label_box_margin_start"
+        app:layout_constraintStart_toEndOf="@id/button_box_margin_start_minus"
+        app:layout_constraintTop_toBottomOf="@id/barrier_labels_box_margins" />
+
+      <Button
+        android:id="@+id/button_box_margin_top_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintEnd_toStartOf="@id/button_box_margin_top_plus"
+        app:layout_constraintStart_toStartOf="@id/label_box_margin_top"
+        app:layout_constraintTop_toBottomOf="@id/barrier_labels_box_margins" />
+
+      <Button
+        android:id="@+id/button_box_margin_top_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="@id/label_box_margin_top"
+        app:layout_constraintStart_toEndOf="@id/button_box_margin_top_minus"
+        app:layout_constraintTop_toBottomOf="@id/barrier_labels_box_margins" />
+
+      <Button
+        android:id="@+id/button_box_margin_end_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintEnd_toStartOf="@id/button_box_margin_end_plus"
+        app:layout_constraintStart_toStartOf="@id/label_box_margin_end"
+        app:layout_constraintTop_toBottomOf="@id/barrier_labels_box_margins" />
+
+      <Button
+        android:id="@+id/button_box_margin_end_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="@id/label_box_margin_end"
+        app:layout_constraintStart_toEndOf="@id/button_box_margin_end_minus"
+        app:layout_constraintTop_toBottomOf="@id/barrier_labels_box_margins" />
+
+      <Button
+        android:id="@+id/button_box_margin_bottom_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintEnd_toStartOf="@id/button_box_margin_bottom_plus"
+        app:layout_constraintStart_toStartOf="@id/label_box_margin_bottom"
+        app:layout_constraintTop_toBottomOf="@id/barrier_labels_box_margins" />
+
+      <Button
+        android:id="@+id/button_box_margin_bottom_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="@id/label_box_margin_bottom"
+        app:layout_constraintStart_toEndOf="@id/button_box_margin_bottom_minus"
+        app:layout_constraintTop_toBottomOf="@id/barrier_labels_box_margins" />
+
+      <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/buttons_box_margins"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="button_box_margin_start_minus, button_box_margin_start_plus, button_box_margin_top_minus, button_box_margin_top_plus, button_box_margin_end_minus, button_box_margin_end_plus, button_box_margin_bottom_minus, button_box_margin_bottom_plus" />
+
+      <TextView
+        android:id="@+id/label_box_padding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Box padding"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttons_box_margins" />
+
+      <TextView
+        android:id="@+id/label_box_padding_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        app:layout_constraintEnd_toStartOf="@id/label_box_padding_top"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/label_box_padding" />
+
+      <TextView
+        android:id="@+id/label_box_padding_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top"
+        app:layout_constraintEnd_toStartOf="@id/label_box_padding_end"
+        app:layout_constraintStart_toEndOf="@id/label_box_padding_start"
+        app:layout_constraintTop_toBottomOf="@id/label_box_padding" />
+
+      <TextView
+        android:id="@+id/label_box_padding_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="End"
+        app:layout_constraintEnd_toStartOf="@id/label_box_padding_bottom"
+        app:layout_constraintStart_toEndOf="@id/label_box_padding_top"
+        app:layout_constraintTop_toBottomOf="@id/label_box_padding" />
+
+      <TextView
+        android:id="@+id/label_box_padding_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/label_box_padding_end"
+        app:layout_constraintTop_toBottomOf="@id/label_box_padding" />
+
+      <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_labels_box_paddings"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="label_box_padding_start, label_box_padding_top, label_box_padding_end, label_box_padding_bottom" />
+
+      <Button
+        android:id="@+id/button_box_padding_start_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintEnd_toStartOf="@id/button_box_padding_start_plus"
+        app:layout_constraintStart_toStartOf="@id/label_box_padding_start"
+        app:layout_constraintTop_toBottomOf="@id/barrier_labels_box_paddings" />
+
+      <Button
+        android:id="@+id/button_box_padding_start_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="@id/label_box_padding_start"
+        app:layout_constraintStart_toEndOf="@id/button_box_padding_start_minus"
+        app:layout_constraintTop_toBottomOf="@id/barrier_labels_box_paddings" />
+
+      <Button
+        android:id="@+id/button_box_padding_top_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintEnd_toStartOf="@id/button_box_padding_top_plus"
+        app:layout_constraintStart_toStartOf="@id/label_box_padding_top"
+        app:layout_constraintTop_toBottomOf="@id/barrier_labels_box_paddings" />
+
+      <Button
+        android:id="@+id/button_box_padding_top_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="@id/label_box_padding_top"
+        app:layout_constraintStart_toEndOf="@id/button_box_padding_top_minus"
+        app:layout_constraintTop_toBottomOf="@id/barrier_labels_box_paddings" />
+
+      <Button
+        android:id="@+id/button_box_padding_end_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintEnd_toStartOf="@id/button_box_padding_end_plus"
+        app:layout_constraintStart_toStartOf="@id/label_box_padding_end"
+        app:layout_constraintTop_toBottomOf="@id/barrier_labels_box_paddings" />
+
+      <Button
+        android:id="@+id/button_box_padding_end_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="@id/label_box_padding_end"
+        app:layout_constraintStart_toEndOf="@id/button_box_padding_end_minus"
+        app:layout_constraintTop_toBottomOf="@id/barrier_labels_box_paddings" />
+
+      <Button
+        android:id="@+id/button_box_padding_bottom_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        app:layout_constraintEnd_toStartOf="@id/button_box_padding_bottom_plus"
+        app:layout_constraintStart_toStartOf="@id/label_box_padding_bottom"
+        app:layout_constraintTop_toBottomOf="@id/barrier_labels_box_paddings" />
+
+      <Button
+        android:id="@+id/button_box_padding_bottom_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="@id/label_box_padding_bottom"
+        app:layout_constraintStart_toEndOf="@id/button_box_padding_bottom_minus"
+        app:layout_constraintTop_toBottomOf="@id/barrier_labels_box_paddings" />
+
+      <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_buttons_box_paddings"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="button_box_padding_start_minus, button_box_padding_start_plus, button_box_padding_top_minus, button_box_padding_top_plus, button_box_padding_end_minus, button_box_padding_end_plus, button_box_padding_bottom_minus, button_box_padding_bottom_plus" />
+
+      <TextView
+        android:id="@+id/label_masked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mask:"
+        app:layout_constraintBottom_toBottomOf="@id/button_masked"
+        app:layout_constraintEnd_toStartOf="@id/button_masked"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/button_masked" />
+
+      <ToggleButton
+        android:id="@+id/button_masked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="On"
+        android:textOn="Off"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/label_masked"
+        app:layout_constraintTop_toBottomOf="@id/barrier_buttons_box_paddings" />
+
+      <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_masked"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="label_masked, button_masked" />
+
+      <TextView
+        android:id="@+id/label_box_mask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Box mask (color, ColorStateList or Drawable)"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier_masked" />
+
+      <TextView
+        android:id="@+id/label_box_mask_inactive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inactive:"
+        app:layout_constraintBottom_toBottomOf="@id/button_box_mask_inactive"
+        app:layout_constraintEnd_toStartOf="@id/button_box_mask_inactive"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/button_box_mask_inactive" />
+
+      <Button
+        android:id="@+id/button_box_mask_inactive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="#000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
+        android:text="Random"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toStartOf="@id/label_box_mask_active"
+        app:layout_constraintStart_toEndOf="@id/label_box_mask_inactive"
+        app:layout_constraintTop_toBottomOf="@id/label_box_mask" />
+
+      <TextView
+        android:id="@+id/label_box_mask_active"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Active:"
+        app:layout_constraintBottom_toBottomOf="@id/button_box_mask_active"
+        app:layout_constraintEnd_toStartOf="@id/button_box_mask_active"
+        app:layout_constraintStart_toEndOf="@id/button_box_mask_inactive"
+        app:layout_constraintTop_toTopOf="@id/button_box_mask_active" />
+
+      <Button
+        android:id="@+id/button_box_mask_active"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="#000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
+        android:text="Random"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/label_box_mask_active"
+        app:layout_constraintTop_toBottomOf="@id/label_box_mask" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </ScrollView>
+</LinearLayout>
