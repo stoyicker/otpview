@@ -9,7 +9,8 @@
     android:icon="@null"
     android:label="OtpView Demo"
     android:roundIcon="@null"
-    android:supportsRtl="true">
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme">
     <activity android:name=".MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />

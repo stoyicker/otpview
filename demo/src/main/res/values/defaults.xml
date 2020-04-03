@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="text_active">#222</color>
+  <color name="text_inactive">#FFF</color>
+  <color name="bg_active">#FFF</color>
+  <color name="bg_inactive">#222</color>
+  <color name="mask_active">#FFF</color>
+  <color name="mask_inactive">#222</color>
+</resources>

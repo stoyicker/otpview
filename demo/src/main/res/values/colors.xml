@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="default_boxTextColor">@color/default_box_text_color</color>
+  <drawable name="default_boxBackground">@drawable/default_box_background</drawable>
+  <drawable name="default_boxMask">@drawable/default_box_mask</drawable>
+  <bool name="default_masked">false</bool>
+</resources>

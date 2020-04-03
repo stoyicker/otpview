@@ -6,7 +6,7 @@
       <size
         android:width="8dp"
         android:height="8dp" />
-      <solid android:color="#222" />
+      <solid android:color="@color/bg_inactive" />
     </shape>
   </item>
 </layer-list>

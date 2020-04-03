@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="AppTheme" parent="@android:style/Theme.DeviceDefault.NoActionBar">
+    <item name="android:textViewStyle">@style/TextViewStyle</item>
+    <item name="android:buttonStyle">@style/ButtonStyle</item>
+    <item name="android:editTextStyle">@style/EditTextStyle</item>
+    <item name="android:buttonStyleToggle">@style/ToggleButtonStyle</item>
+  </style>
+
+  <style name="TextViewStyle" parent="@android:style/Widget.DeviceDefault.TextView">
+    <item name="android:fontFamily">monospace</item>
+    <item name="android:gravity">center</item>
+    <item name="android:minWidth">1dp</item>
+    <item name="android:minHeight">1dp</item>
+  </style>
+
+  <style name="ButtonStyle" parent="@android:style/Widget.DeviceDefault.Button">
+    <item name="android:fontFamily">monospace</item>
+    <item name="android:gravity">center</item>
+    <item name="android:minWidth">1dp</item>
+    <item name="android:minHeight">1dp</item>
+  </style>
+
+  <style name="EditTextStyle" parent="@android:style/Widget.DeviceDefault.EditText">
+    <item name="android:fontFamily">monospace</item>
+    <item name="android:gravity">center</item>
+    <item name="android:minWidth">1dp</item>
+    <item name="android:minHeight">1dp</item>
+    <item name="android:imeOptions">flagNoExtractUi</item>
+  </style>
+
+  <style name="ToggleButtonStyle" parent="@android:style/Widget.DeviceDefault.Button.Toggle">
+    <item name="android:fontFamily">monospace</item>
+    <item name="android:gravity">center</item>
+    <item name="android:minWidth">1dp</item>
+    <item name="android:minHeight">1dp</item>
+  </style>
+</resources>
