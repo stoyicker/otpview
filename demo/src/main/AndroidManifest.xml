@@ -4,6 +4,7 @@
   package="otpview.demo">
 
   <application
+    android:name=".CustomApplication"
     android:allowBackup="true"
     android:fullBackupContent="false"
     android:icon="@null"
