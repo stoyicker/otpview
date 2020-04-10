@@ -20,7 +20,7 @@ uploadReleaseToGitHub() {
             --header "Content-Type: application/json; charset=utf-8" \
             --request POST \
             --data "${BODY}" \
-            https://api.github.com/repos/"${REPO_SLUG}"/releases)
+            https://api.github.com/repos/"${CIRCLE_PROJECT_USERNAME}"/"${CIRCLE_PROJECT_REPONAME}"/releases)
 
     # Extract the upload_url value
     UPLOAD_URL=$(echo ${RESPONSE_BODY} | jq -r .upload_url)
