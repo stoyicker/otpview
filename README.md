@@ -33,6 +33,8 @@ support for autocomplete as well as for Kotlin.
 The entire library is written in Java and Kotlin compatibility is achieved via annotations that do
 not make it to runtime. So neither Kotlin nor Java users get anything they don't want!
 ## Full API reference
+See [defaults.xml](library/src/main/res/values/defaults.xml) for default values.
+
 ### `public int getBoxAmount()`
 
 Gets the amount of boxes currently in the view.
