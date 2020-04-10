@@ -401,8 +401,9 @@ Sets the Drawable to be used as a mask for the boxes.
 
 ### `public void setOrientation(int orientation)`
 
- * **See also:** LinearLayout#setOrientation(int)
- * **See also:** android.R.attr#orientation
+ * **See also:** 
+   * LinearLayout#setOrientation(int)
+   * android.R.attr#orientation
 
 ### `public void setLayoutDirection(int layoutDirection)`
 
