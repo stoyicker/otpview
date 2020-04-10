@@ -30,6 +30,6 @@ if [ -z "$VERSION" ]; then
   usage
 fi
 
-git tag ${VERSION} ${REVISION} -m "${VERSION}" && git push --tags
-
-echo "New release ${VERSION} for revision $(git rev-parse "${REVISION}") requested successfully"
+git tag ${VERSION} ${REVISION} -m "${VERSION}" &&
+  git push --tags &&
+  echo "New release ${VERSION} for revision $(git rev-parse "${REVISION}") requested successfully"
