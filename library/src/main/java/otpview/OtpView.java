@@ -780,8 +780,8 @@ public final class OtpView extends LinearLayout {
    * Gives focus to the first box without text. Note that when a box gains focus, it (1) becomes
    * active, (2) erases its text, if any, and (3) shows the soft keyboard.
    *
-   * @return <code>true</code> if a box (regardless of whether it was focused before or not).
-   * <code>false</code> otherwise.
+   * @return <code>true</code> if a box (regardless of whether it was focused before or not) has
+   * requested focus. <code>false</code> otherwise.
    */
   @Keep
   public boolean requestFocusFirstBlankBox() {
