@@ -42,12 +42,12 @@ jobs:
       - run: ./gradlew :demo:testReleaseUnitTest
       - store_test_results:
           path: demo/build/test-results/
-  ensure_tag_allowed:
+  ensure_release_allowed:
     docker:
       - image: circleci/node:13.8
     steps:
       - checkout
-      - run: ./.circleci/ensure_tag_allowed.sh
+      - run: ./.circleci/ensure_release_allowed.sh
   release_on_github:
     docker:
       - image: circleci/android:api-29
@@ -62,17 +62,11 @@ workflows:
   version: 2.1
   test:
     jobs:
-      - build_library:
-          filters:
-            tags:
-              ignore: /.*/
+      - build_library
       - test_library:
           requires:
             - build_library
-      - build_demo:
-          filters:
-            tags:
-              ignore: /.*/
+      - build_demo
       - test_demo:
           requires:
             - build_demo
@@ -80,25 +74,33 @@ workflows:
     jobs:
       - build_library:
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /.*/
       - test_library:
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /.*/
           requires:
             - build_library
       - build_demo:
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /.*/
       - test_demo:
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /.*/
           requires:
             - build_demo
-      - ensure_tag_allowed:
+      - ensure_release_allowed:
           filters:
             branches:
               ignore: /.*/
@@ -112,6 +114,6 @@ workflows:
             tags:
               only: /.*/
           requires:
-            - ensure_tag_allowed
+            - ensure_release_allowed
             - test_library
             - test_demo
