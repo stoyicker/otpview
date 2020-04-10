@@ -5,9 +5,6 @@ android {
   compileSdkVersion 29
   buildToolsVersion "29.0.3"
   buildTypes {
-    debug {
-      matchingFallbacks = ["release"]
-    }
     release {
       shrinkResources true
       minifyEnabled true
@@ -21,6 +18,11 @@ android {
     versionCode 1
     versionName "1.0"
     resConfigs "en"
+  }
+  variantFilter {
+    if (it.buildType.name == "debug") {
+      it.ignore = true
+    }
   }
 }
 
