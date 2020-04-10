@@ -22,7 +22,7 @@ dependencies {
 | **LTR, RTL & top-to-bottom**                 	    | <img src="http://getdrawings.com/free-icon/android-checkmark-icon-60.png" alt="drawing" width="16" height="16"/>  |
 | **Fully customizable via state-based drawables** 	| <img src="http://getdrawings.com/free-icon/android-checkmark-icon-60.png" alt="drawing" width="16" height="16"/>  |
 | **Customizable attributes via XML**              	| All                     	                                                                                        |
-| **Customizable attributes via XML**              	| All                     	                                                                                        |
+| **Customizable attributes after inflation**    	| All                     	                                                                                        |
 ## FAQ
 ### ProGuard/DexGuard/R8
 The library includes its own rules. Nothing for you to do.
