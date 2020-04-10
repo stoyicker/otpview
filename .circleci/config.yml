@@ -1,0 +1,116 @@
+version: 2.1
+jobs:
+  build_library:
+    docker:
+      - image: circleci/android:api-29
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - run: ./gradlew :library:assemble
+      - store_artifacts:
+          path: library/build/outputs/aar/library-release.aar
+          destination: library-release.aar
+  test_library:
+    docker:
+      - image: circleci/android:api-29
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - run: ./gradlew :library:testReleaseUnitTest
+      - store_test_results:
+          path: library/build/test-results/
+  build_demo:
+    docker:
+      - image: circleci/android:api-29
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - run: ./gradlew :demo:assemble
+      - store_artifacts:
+          path: demo/build/outputs/apk/release/demo-release.apk
+          destination: demo-release.apk
+  test_demo:
+    docker:
+      - image: circleci/android:api-29
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - run: ./gradlew :demo:testReleaseUnitTest
+      - store_test_results:
+          path: demo/build/test-results/
+  ensure_tag_allowed:
+    docker:
+      - image: circleci/node:13.8
+    steps:
+      - checkout
+      - run: ./.circleci/ensure_tag_allowed.sh
+  release_on_github:
+    docker:
+      - image: circleci/android:api-29
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - run: ./gradlew :library:assembleRelease
+      - run: ./gradlew :demo:assembleRelease
+      - run: ./.circleci/release_github.sh
+workflows:
+  version: 2.1
+  test:
+    jobs:
+      - build_library:
+          filters:
+            tags:
+              ignore: /.*/
+      - test_library:
+          requires:
+            - build_library
+      - build_demo:
+          filters:
+            tags:
+              ignore: /.*/
+      - test_demo:
+          requires:
+            - build_demo
+  release:
+    jobs:
+      - ensure_tag_allowed:
+          filters:
+            branches:
+              ignore: /.*/
+      - build_library:
+          filters:
+            branches:
+              ignore: /.*/
+          requires:
+            - ensure_tag_allowed
+      - test_library:
+          filters:
+            branches:
+              ignore: /.*/
+          requires:
+            - build_library
+      - build_demo:
+          filters:
+            branches:
+              ignore: /.*/
+          requires:
+            - ensure_tag_allowed
+      - test_demo:
+          filters:
+            branches:
+              ignore: /.*/
+          requires:
+            - build_demo
+      - release_on_github:
+          context: otpview_release_github
+          filters:
+            branches:
+              ignore: /.*/
+          requires:
+            - test_library
+            - test_demo
