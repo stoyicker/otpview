@@ -111,6 +111,8 @@ workflows:
           filters:
             branches:
               ignore: /.*/
+            tags:
+              only: /.*/
           requires:
             - test_library
             - test_demo
