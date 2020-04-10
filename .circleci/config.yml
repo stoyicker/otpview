@@ -92,6 +92,8 @@ workflows:
           filters:
             branches:
               ignore: /.*/
+            tags:
+              only: /.*/
           requires:
             - build_library
       - build_demo:
@@ -104,6 +106,8 @@ workflows:
           filters:
             branches:
               ignore: /.*/
+            tags:
+              only: /.*/
           requires:
             - build_demo
       - release_on_github:
