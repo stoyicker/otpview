@@ -78,38 +78,32 @@ workflows:
             - build_demo
   release:
     jobs:
-      - ensure_tag_allowed:
-          filters:
-            branches:
-              ignore: /.*/
       - build_library:
           filters:
-            branches:
-              ignore: /.*/
-          requires:
-            - ensure_tag_allowed
+            tags:
+              only: /.*/
       - test_library:
           filters:
-            branches:
-              ignore: /.*/
             tags:
               only: /.*/
           requires:
             - build_library
       - build_demo:
           filters:
-            branches:
-              ignore: /.*/
-          requires:
-            - ensure_tag_allowed
+            tags:
+              only: /.*/
       - test_demo:
+          filters:
+            tags:
+              only: /.*/
+          requires:
+            - build_demo
+      - ensure_tag_allowed:
           filters:
             branches:
               ignore: /.*/
             tags:
               only: /.*/
-          requires:
-            - build_demo
       - release_on_github:
           context: otpview_release_github
           filters:
@@ -118,5 +112,6 @@ workflows:
             tags:
               only: /.*/
           requires:
+            - ensure_tag_allowed
             - test_library
             - test_demo
