@@ -10,7 +10,7 @@ repositories {
   jcenter()
 }
 dependencies {
-    implementation "com.github.stoyicker.otpview:library:<version>"
+  implementation "com.github.stoyicker.otpview:library:<version>"
 }
 ```
 [![Demo video](TODO Google Play screenshot link)](TODO Google Play video link "OtpView demo video")
