@@ -76,7 +76,7 @@ bintray {
   publications = ["library"]
   publish = true
   pkg {
-    repo = rootProject.name
+    repo = "otpview"
     name = project.name
     vcsUrl = "https://github.com/stoyicker/otpview"
     licenses = ["MIT"]
