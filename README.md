@@ -6,7 +6,6 @@
 [ ![Download](https://api.bintray.com/packages/stoyicker/otpview/library/images/download.svg) ](https://search.maven.org/search?q=g:com.github.stoyicker.otpview)
 ```groovy
 repositories {
-  google()
   jcenter()
 }
 dependencies {
