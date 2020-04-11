@@ -18,7 +18,7 @@ jobs:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
-      - run: ./gradlew :library:testReleaseUnitTest
+      - run: ./gradlew library:testReleaseUnitTest
       - store_test_results:
           path: library/build/test-results/
   build_demo:
@@ -28,7 +28,7 @@ jobs:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
-      - run: ./gradlew :demo:assemble
+      - run: ./gradlew demo:assemble
       - store_artifacts:
           path: demo/build/outputs/apk/release/demo-release.apk
           destination: demo-release.apk
@@ -39,7 +39,7 @@ jobs:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
-      - run: ./gradlew :demo:testReleaseUnitTest
+      - run: ./gradlew demo:testReleaseUnitTest
       - store_test_results:
           path: demo/build/test-results/
   ensure_release_allowed:
@@ -55,8 +55,8 @@ jobs:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
-      - run: ./gradlew :library:assembleRelease
-      - run: ./gradlew :demo:assembleRelease
+      - run: ./gradlew library:assembleRelease
+      - run: ./gradlew demo:assembleRelease
       - run: ./.circleci/release_github.sh
 workflows:
   version: 2.1
