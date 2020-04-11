@@ -127,7 +127,7 @@ workflows:
             - test_library
             - test_demo
       - release_library_on_bintray:
-          context: otpview_release_bintray
+          context: otpview_release_bintray_oss
           filters:
             branches:
               ignore: /.*/
