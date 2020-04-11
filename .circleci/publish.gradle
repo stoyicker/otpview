@@ -1,0 +1,101 @@
+project.version = {
+  def stdout = new ByteArrayOutputStream()
+  exec {
+    commandLine "git", "describe", "--abbrev=0"
+    standardOutput = stdout
+  }
+  return stdout.toString().replaceAll("[^\\d|.]", "")
+}()
+
+task sourcesJar(type: Jar) {
+  group = JavaBasePlugin.DOCUMENTATION_GROUP
+  description = "Assembles a sources JAR"
+  archiveClassifier.set("sources")
+  archiveFileName = "${project.name}-sources.jar"
+  from android.sourceSets.main.java.srcDirs
+}
+
+task javadocJar(type: Jar) {
+  group = JavaBasePlugin.DOCUMENTATION_GROUP
+  description = "Assembles a javadoc JAR"
+  archiveClassifier.set("javadoc")
+  archiveFileName = "${project.name}-javadoc.jar"
+  // As of right now there is no support for extracting javadoc from an AAR,
+  // so publish the sources JAR as javadoc since it includes javadoc
+  from android.sourceSets.main.java.srcDirs
+}
+
+publishing {
+  publications {
+    library(MavenPublication) {
+      artifactId project.name
+      version project.version
+      artifact "${project.buildDir}/outputs/aar/library-release.aar"
+      artifact sourcesJar
+      artifact javadocJar
+      groupId "com.github.stoyicker.otpview"
+      pom {
+        name = project.name
+        description = project.name
+        url = "https://github.com/stoyicker/otpview"
+        licenses {
+          license {
+            name = "MIT"
+            url = "https://opensource.org/licenses/MIT"
+          }
+        }
+        developers {
+          developer {
+            id = "stoyicker"
+            name = "Jorge Antonio Diaz-Benito Soriano"
+            email = "jorge.diazbenitosoriano@gmail.com"
+          }
+        }
+        scm {
+          connection = "scm:git:https://github.com:stoyicker/otpview.git"
+          developerConnection = "scm:git:ssh:git@github.com:stoyicker/otpview.git"
+          url = "https://github.com/stoyicker/otpview"
+        }
+      }
+    }
+  }
+  repositories {
+    maven {
+      url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+      credentials {
+        username = "$System.env.OSS_USER"
+        password = "$System.env.OSS_PASSWORD"
+      }
+    }
+  }
+}
+
+bintray {
+  user = "$System.env.BINTRAY_USER"
+  key = "$System.env.BINTRAY_API_KEY"
+  publications = ["library"]
+  publish = true
+  pkg {
+    repo = rootProject.name
+    name = project.name
+    vcsUrl = "https://github.com/stoyicker/otpview"
+    licenses = ["MIT"]
+    desc = "A lightweight, highly-customizable and reliable OTP input field for Android"
+    publicDownloadNumbers = true
+    githubRepo = "stoyicker/otpview"
+    websiteUrl = "https://github.com/stoyicker/otpview"
+    issueTrackerUrl = "https://github.com/stoyicker/otpview/issues"
+    version {
+      name = project.version
+      vcsTag = project.version
+      released = new Date()
+      gpg {
+        sign = true
+      }
+      mavenCentralSync {
+        user = "$System.env.OSS_USER"
+        password = "$System.env.OSS_PASSWORD"
+      }
+    }
+  }
+}

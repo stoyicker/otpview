@@ -58,6 +58,15 @@ jobs:
       - run: ./gradlew library:assembleRelease
       - run: ./gradlew demo:assembleRelease
       - run: ./.circleci/release_github.sh
+  release_library_on_bintray:
+    docker:
+      - image: circleci/android:api-29
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - run: ./gradlew library:assembleRelease
+      - run: ./gradlew library:bintrayUpload
 workflows:
   version: 2.1
   test:
@@ -117,3 +126,10 @@ workflows:
             - ensure_release_allowed
             - test_library
             - test_demo
+      - release_library_on_bintray:
+          context: otpview_release_bintray
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /.*/

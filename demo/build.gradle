@@ -1,6 +1,7 @@
 apply plugin: "com.android.application"
 apply plugin: "kotlin-android"
 
+final def runningOnCi = System.getenv("CI") != null
 android {
   compileSdkVersion 29
   buildToolsVersion "29.0.3"
@@ -24,8 +25,8 @@ android {
     applicationId "otpview.demo"
     minSdkVersion 17
     targetSdkVersion 29
-    versionCode 1
-    versionName "1.0"
+    versionCode runningOnCi ? "git rev-list --count HEAD".execute().text.toInteger() : Integer.MAX_VALUE
+    versionName runningOnCi ? "git describe --abbrev=0".execute().text.trim() : String.valueOf(versionCode)
     resConfigs "en"
   }
   variantFilter {
