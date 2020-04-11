@@ -32,4 +32,4 @@ fi
 
 git tag ${VERSION} ${REVISION} -m "${VERSION}" &&
   git push --tags &&
-  echo "New release ${VERSION} for revision $(git rev-parse "${REVISION}") requested successfully"
+  echo "New release ${VERSION} for revision $(git rev-parse --short "${REVISION}") requested successfully"
