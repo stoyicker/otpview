@@ -1,6 +1,6 @@
 # OtpView
 ### A lightweight, highly-customizable and reliable OTP input field for Android
-### Check out the sample app on [the releases page](https://github.com/stoyicker/otpview/releases/latest) or on [Google Play](TODO Google Play link)!
+### Check out the sample app on [the releases page](https://github.com/stoyicker/otpview/releases/latest) or on [Google Play](https://play.google.com/store/apps/details?id=otpview.demo)!
 [![CircleCI](https://circleci.com/gh/stoyicker/otpview.svg?style=svg)](https://circleci.com/gh/stoyicker/otpview)
 ## Usage
 [ ![Download](https://api.bintray.com/packages/stoyicker/otpview/library/images/download.svg) ](https://search.maven.org/search?q=g:com.github.stoyicker.otpview)
