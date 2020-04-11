@@ -133,3 +133,7 @@ workflows:
               ignore: /.*/
             tags:
               only: /.*/
+          requires:
+            - ensure_release_allowed
+            - test_library
+            - test_demo
