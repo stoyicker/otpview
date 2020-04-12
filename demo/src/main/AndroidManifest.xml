@@ -7,9 +7,9 @@
     android:name=".CustomApplication"
     android:allowBackup="true"
     android:fullBackupContent="false"
-    android:icon="@null"
+    android:icon="@mipmap/ic_launcher"
+    android:roundIcon="@mipmap/ic_launcher_round"
     android:label="OtpView Demo"
-    android:roundIcon="@null"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
     <activity android:name=".MainActivity">
