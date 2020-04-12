@@ -22,7 +22,8 @@ public abstract class SimpleOtpInputListener implements OtpInputListener {
     }
   }
 
-  abstract void onFullInput(String charSequence);
+  @SuppressWarnings("WeakerAccess") // Won't work with Kotlin
+  public abstract void onFullInput(String charSequence);
 
   private static String sparseArrayToCharSequence(
       final SparseArray<Character> sparseArray, int boxAmount) {
