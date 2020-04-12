@@ -13,18 +13,6 @@ import androidx.annotation.NonNull;
 public abstract class SimpleOtpInputListener implements OtpInputListener {
   private CharSequence lastInput = null;
 
-  @Override
-  public final void onInput(final @NonNull SparseArray<Character> textRaw, int boxAmount) {
-    final String fullInput = sparseArrayToCharSequence(textRaw, boxAmount);
-    if (textRaw.size() == boxAmount && lastInput != fullInput) {
-      lastInput = fullInput;
-      onFullInput(fullInput);
-    }
-  }
-
-  @SuppressWarnings("WeakerAccess") // Won't work with Kotlin
-  public abstract void onFullInput(String charSequence);
-
   private static String sparseArrayToCharSequence(
       final SparseArray<Character> sparseArray, int boxAmount) {
     final StringBuilder ret = new StringBuilder();
@@ -37,4 +25,16 @@ public abstract class SimpleOtpInputListener implements OtpInputListener {
     }
     return ret.toString();
   }
+
+  @Override
+  public final void onInput(final @NonNull SparseArray<Character> textRaw, int boxAmount) {
+    final String fullInput = sparseArrayToCharSequence(textRaw, boxAmount);
+    if (textRaw.size() == boxAmount && lastInput != fullInput) {
+      lastInput = fullInput;
+      onFullInput(fullInput);
+    }
+  }
+
+  @SuppressWarnings("WeakerAccess") // Won't work with Kotlin
+  public abstract void onFullInput(String charSequence);
 }

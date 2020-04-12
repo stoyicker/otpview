@@ -57,6 +57,11 @@ import otpview.internal.StateMasked;
 import otpview.internal.StateText;
 
 public final class OtpView extends LinearLayout {
+  @SuppressWarnings("ConstantConditions")
+  // If myLooper returns null, the constructor is being run off the main thread, which is not
+  // supported for android.widget.View inheritors
+  private final Handler handler = new Handler(Looper.myLooper());
+  private final Runnable hideSoftKeyboardRunnable = new HideSoftKeyboardRunnable(this);
   private StateBoxTextColor stateBoxTextColor;
   private StateBoxTextSize stateBoxTextSize;
   private StateBoxInputType stateBoxInputType;
@@ -75,11 +80,6 @@ public final class OtpView extends LinearLayout {
   private StateBoxMask stateBoxMask;
   private Set<OtpInputListener> listenerSet;
   private boolean isRestoringInstanceState = false;
-  @SuppressWarnings("ConstantConditions")
-  // If myLooper returns null, the constructor is being run off the main thread, which is not
-  // supported for android.widget.View inheritors
-  private final Handler handler = new Handler(Looper.myLooper());
-  private final Runnable hideSoftKeyboardRunnable = new HideSoftKeyboardRunnable(this);
 
   @Keep
   public OtpView(final @NonNull Context context) {
@@ -357,29 +357,6 @@ public final class OtpView extends LinearLayout {
   /**
    * Sets the color to be used as a background for the boxes.
    *
-   * @param newColorRes A resource pointing to the new color to be as a background for the boxes
-   * @see R.attr#otp_boxBackground
-   */
-  @Keep
-  public void setBoxBackgroundColorResource(@ColorRes int newColorRes) {
-    setBoxBackground(new ColorDrawable(getContext().getResources().getColor(newColorRes)));
-  }
-
-  /**
-   * Sets the drawable to be used as a background for the boxes.
-   *
-   * @param newDrawableRes A resource pointing to the new {@link Drawable} to be as a background for
-   *                       the boxes
-   * @see R.attr#otp_boxBackground
-   */
-  @Keep
-  public void setBoxBackgroundDrawableResource(@DrawableRes int newDrawableRes) {
-    setBoxBackground(getContext().getResources().getDrawable(newDrawableRes));
-  }
-
-  /**
-   * Sets the color to be used as a background for the boxes.
-   *
    * @param newColor The new color to be as a background for the boxes
    * @see R.attr#otp_boxBackground
    */
@@ -401,6 +378,29 @@ public final class OtpView extends LinearLayout {
   }
 
   /**
+   * Sets the color to be used as a background for the boxes.
+   *
+   * @param newColorRes A resource pointing to the new color to be as a background for the boxes
+   * @see R.attr#otp_boxBackground
+   */
+  @Keep
+  public void setBoxBackgroundColorResource(@ColorRes int newColorRes) {
+    setBoxBackground(new ColorDrawable(getContext().getResources().getColor(newColorRes)));
+  }
+
+  /**
+   * Sets the drawable to be used as a background for the boxes.
+   *
+   * @param newDrawableRes A resource pointing to the new {@link Drawable} to be as a background for
+   *                       the boxes
+   * @see R.attr#otp_boxBackground
+   */
+  @Keep
+  public void setBoxBackgroundDrawableResource(@DrawableRes int newDrawableRes) {
+    setBoxBackground(getContext().getResources().getDrawable(newDrawableRes));
+  }
+
+  /**
    * Gets the color for the text in the boxes.
    *
    * @return A {@link ColorStateList} describing the color(s) for the text in the boxes
@@ -411,6 +411,19 @@ public final class OtpView extends LinearLayout {
   @NonNull
   public ColorStateList getBoxTextColor() {
     return stateBoxTextColor.getValue();
+  }
+
+  /**
+   * Sets the color for the text in the boxes.
+   *
+   * @param newColor The new color to use for the boxes where the code
+   *                 characters are shown. Use <code>state_focused</code> to apply
+   *                 different customization to a box when it is active
+   * @see R.attr#otp_boxTextColor
+   */
+  @Keep
+  public void setBoxTextColor(@ColorInt int newColor) {
+    setBoxTextColorStateList(ColorStateList.valueOf(newColor));
   }
 
   /**
@@ -438,19 +451,6 @@ public final class OtpView extends LinearLayout {
   @Keep
   public void setBoxTextColorStateListResource(@ColorRes int newColorRes) {
     setBoxTextColorStateList(getContext().getResources().getColorStateList(newColorRes));
-  }
-
-  /**
-   * Sets the color for the text in the boxes.
-   *
-   * @param newColor The new color to use for the boxes where the code
-   *                 characters are shown. Use <code>state_focused</code> to apply
-   *                 different customization to a box when it is active
-   * @see R.attr#otp_boxTextColor
-   */
-  @Keep
-  public void setBoxTextColor(@ColorInt int newColor) {
-    setBoxTextColorStateList(ColorStateList.valueOf(newColor));
   }
 
   /**
@@ -572,19 +572,6 @@ public final class OtpView extends LinearLayout {
    * all. The content is distributed one character per box, starting with the first box, this being
    * the left-most one in LTR locales and the right-most one in RTL locales.
    *
-   * @param newTextRes The resource for the text to set in this view
-   * @see R.attr#otp_text
-   */
-  @Keep
-  public void setTextResource(final @StringRes int newTextRes) {
-    setText(getContext().getString(newTextRes));
-  }
-
-  /**
-   * Sets the text in the view. If the view is set to be masked, the text will not be revealed at
-   * all. The content is distributed one character per box, starting with the first box, this being
-   * the left-most one in LTR locales and the right-most one in RTL locales.
-   *
    * @param newText The text to set in this view
    * @see R.attr#otp_text
    */
@@ -592,6 +579,19 @@ public final class OtpView extends LinearLayout {
   public void setText(final @NonNull CharSequence newText) {
     stateText = StateText.FactoryFromCharSequence.Loader.INSTANCE.create(this, newText);
     applyAll();
+  }
+
+  /**
+   * Sets the text in the view. If the view is set to be masked, the text will not be revealed at
+   * all. The content is distributed one character per box, starting with the first box, this being
+   * the left-most one in LTR locales and the right-most one in RTL locales.
+   *
+   * @param newTextRes The resource for the text to set in this view
+   * @see R.attr#otp_text
+   */
+  @Keep
+  public void setTextResource(final @StringRes int newTextRes) {
+    setText(getContext().getString(newTextRes));
   }
 
   /**
@@ -658,29 +658,6 @@ public final class OtpView extends LinearLayout {
   /**
    * Sets the color to be used as a mask for the boxes.
    *
-   * @param newColorRes A resource pointing to the new color to be as a mask for the boxes
-   * @see R.attr#otp_boxMask
-   */
-  @Keep
-  public void setBoxMaskColorResource(@ColorRes int newColorRes) {
-    setBoxMask(new ColorDrawable(getContext().getResources().getColor(newColorRes)));
-  }
-
-  /**
-   * Sets the drawable to be used as a mask for the boxes.
-   *
-   * @param newDrawableRes A resource pointing to the new {@link Drawable} to be as a mask for the
-   *                       boxes
-   * @see R.attr#otp_boxMask
-   */
-  @Keep
-  public void setBoxMaskDrawableResource(@DrawableRes int newDrawableRes) {
-    setBoxMask(getContext().getResources().getDrawable(newDrawableRes));
-  }
-
-  /**
-   * Sets the color to be used as a mask for the boxes.
-   *
    * @param newColor The new color to be as a mask for the boxes
    * @see R.attr#otp_boxMask
    */
@@ -699,6 +676,29 @@ public final class OtpView extends LinearLayout {
   public void setBoxMask(final @Nullable Drawable newDrawable) {
     stateBoxMask = new StateBoxMask(this, newDrawable);
     applyAll();
+  }
+
+  /**
+   * Sets the color to be used as a mask for the boxes.
+   *
+   * @param newColorRes A resource pointing to the new color to be as a mask for the boxes
+   * @see R.attr#otp_boxMask
+   */
+  @Keep
+  public void setBoxMaskColorResource(@ColorRes int newColorRes) {
+    setBoxMask(new ColorDrawable(getContext().getResources().getColor(newColorRes)));
+  }
+
+  /**
+   * Sets the drawable to be used as a mask for the boxes.
+   *
+   * @param newDrawableRes A resource pointing to the new {@link Drawable} to be as a mask for the
+   *                       boxes
+   * @see R.attr#otp_boxMask
+   */
+  @Keep
+  public void setBoxMaskDrawableResource(@DrawableRes int newDrawableRes) {
+    setBoxMask(getContext().getResources().getDrawable(newDrawableRes));
   }
 
   @Override
