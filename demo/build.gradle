@@ -1,3 +1,14 @@
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "com.github.triplet.gradle:play-publisher:2.7.5"
+  }
+}
+
 apply plugin: "com.android.application"
 apply plugin: "kotlin-android"
 
@@ -51,4 +62,14 @@ dependencies {
   implementation "androidx.appcompat:appcompat:1.1.0"
   // Replace by "com.github.stoyicker.otpview:library:$version" in your build.gradle
   implementation project(path: ":library")
+}
+
+apply plugin: "com.github.triplet.play"
+play {
+  enabled = runningOnCi
+  track = "production"
+  releaseStatus = "completed"
+  userFraction = 1
+  serviceAccountCredentials = file("${project.rootDir.absolutePath}/api-release.json")
+  defaultToAppBundles = true
 }

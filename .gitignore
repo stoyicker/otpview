@@ -9,3 +9,4 @@ dependencyReport
 local.properties
 *.log
 *.gpg
+api-release.json

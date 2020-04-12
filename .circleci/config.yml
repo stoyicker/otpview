@@ -67,6 +67,17 @@ jobs:
       - checkout
       - run: ./gradlew library:assembleRelease
       - run: ./gradlew library:bintrayUpload
+  release_demo_on_google_play:
+    docker:
+      - image: circleci/android:api-29
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - run: ./gradlew demo:assembleRelease
+      - run: echo $(git describe --abbrev=0) > app/src/main/play/release-names/alpha.txt
+      - run: openssl aes-256-cbc -d -in api-release.json.enc -out api-release.json -k "$ENCRYPTION_KEY"
+      - run: ./gradlew :demo:publishReleaseBundle
 workflows:
   version: 2.1
   test:
@@ -136,4 +147,13 @@ workflows:
           requires:
             - ensure_release_allowed
             - test_library
+      - release_demo_on_google_play:
+          context: otpview_release_google_play
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /.*/
+          requires:
+            - ensure_release_allowed
             - test_demo
