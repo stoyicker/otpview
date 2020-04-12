@@ -3,6 +3,8 @@ package otpview;
 import android.annotation.SuppressLint;
 import android.util.SparseArray;
 
+import androidx.annotation.Keep;
+
 /**
  * Describes a listener for input changes that can be registered on an instance of {@link OtpView}
  * via {@link OtpView#registerOtpInputListener(OtpInputListener)}. For an example implementation
@@ -12,6 +14,7 @@ import android.util.SparseArray;
  * @see OtpView#unregisterOtpInputListener(OtpInputListener)
  * @see SimpleOtpInputListener
  */
+@Keep
 @SuppressLint("UnknownNullness") // It is an interface, it cannot describe the implementation
 public interface OtpInputListener {
   /**
