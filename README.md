@@ -12,7 +12,7 @@ dependencies {
   implementation "com.github.stoyicker.otpview:library:<version>"
 }
 ```
-[![Demo video](https://img.youtube.com/vi/zHxbbyeJ2-g/0.jpg)](https://www.youtube.com/watch?v=zHxbbyeJ2-g "OtpView demo video")
+![Demo video](https://media.giphy.com/media/Q8mDHtZAN4OCcr8N5r/giphy.gif)
 |                                              	    |                         	                                                                                        |
 |---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
 | **Compatible with Kotlin**                   	    | 100%                    	                                                                                        |
