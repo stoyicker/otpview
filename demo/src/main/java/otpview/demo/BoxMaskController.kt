@@ -17,7 +17,7 @@ internal class BoxMaskController(
     super.updateUiImpl(extractColor(recoveredActive), extractColor(recoveredInactive))
   }
 
-  private fun extractColor(drawable: Drawable) = when(drawable) {
+  private fun extractColor(drawable: Drawable) = when (drawable) {
     is LayerDrawable -> ColorDrawable(drawable.getDrawable(0)!!.run { convertToBitmap(drawable) }
         .getPixel(0, 0))
     is ColorDrawable -> ColorDrawable(drawable.color)

@@ -74,7 +74,8 @@ public final class OtpViewSavedState extends View.BaseSavedState {
     direction = _direction;
   }
 
-  @SuppressWarnings("WeakerAccess") // Requires synthetic
+  @SuppressWarnings("WeakerAccess")
+    // Requires synthetic
   OtpViewSavedState(final Parcel in) {
     super(in);
     boxAmount = in.readInt();

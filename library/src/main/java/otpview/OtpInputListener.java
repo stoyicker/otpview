@@ -23,7 +23,7 @@ public interface OtpInputListener {
    * addition and removal of boxes, the text setters in {@link OtpView}, etc.
    * Implementations will always be called on the UI thread.
    *
-   * @param textRaw The current text in the view
+   * @param textRaw   The current text in the view
    * @param boxAmount The amount of boxes currently in the view. You can compare this to the size
    *                  of the {@link SparseArray} to tell if the user may already have finished input
    */
