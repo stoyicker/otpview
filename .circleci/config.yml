@@ -75,7 +75,7 @@ jobs:
     steps:
       - checkout
       - run: ./gradlew demo:assembleRelease
-      - run: echo $(git describe --abbrev=0) > app/src/main/play/release-names/alpha.txt
+      - run: echo $(git describe --abbrev=0) > demo/src/main/play/release-names/alpha.txt
       - run: openssl aes-256-cbc -d -in api-release.json.enc -out api-release.json -k "$ENCRYPTION_KEY"
       - run: ./gradlew demo:publishReleaseBundle
 workflows:
