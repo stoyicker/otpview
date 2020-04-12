@@ -2,12 +2,14 @@ package otpview;
 
 import android.util.SparseArray;
 
+import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
 /**
  * An {@link OtpInputListener} that invokes its callback only when all boxes are filled in and the
  * content does not match that of its last invocation.
  */
+@Keep
 public abstract class SimpleOtpInputListener implements OtpInputListener {
   private CharSequence lastInput = null;
 
