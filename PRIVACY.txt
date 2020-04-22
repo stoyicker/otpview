@@ -1,1 +1,4 @@
-This app stores or tracks none of your data, period.
+Privacy & data tracking
+------------------------
+This app tracks no data, keeps nothing on your device and sends to other devices or servers nor uses it in any other ways for any purposes. This applies to user data that could or could not be potentially used to identify a user, such as mail addresses or phone numbers, interactions with the device (such as clicks, keystrokes on physical or virtual keyboards, etc.), etc.
+Data such as stacktraces and ANR-related information may be provided by Google to the developers of this app via the Google Play Console. This data is not collected nor managed by this app.
