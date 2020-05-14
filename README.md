@@ -192,9 +192,7 @@ Sets the color to be used as a background for the boxes.
 
 Sets the drawable to be used as a background for the boxes.
 
- * **Parameters:** `newDrawableRes` — A resource pointing to the new Drawable to be as a background for
-
-     the boxes
+ * **Parameters:** `newDrawableRes` — A resource pointing to the new Drawable to be as a background for the boxes
  * **See also:** R.attr#otp_boxBackground
 
 ### `public void setBoxBackground(@ColorInt int newColor)`
@@ -222,44 +220,28 @@ Gets the color for the text in the boxes.
 
 Sets the color for the text in the boxes
 
- * **Parameters:** `newColorRes` — The resource for new color to use for the boxes where the code
-
-     characters are shown. Use <code>state_focused</code> to apply
-
-     different customization to a box when it is active
+ * **Parameters:** `newColorRes` — The resource for new color to use for the boxes where the code characters are shown. Use <code>state_focused</code> to apply different customization to a box when it is active
  * **See also:** R.attr#otp_boxTextColor
 
 ### `public void setBoxTextColorStateListResource(@ColorRes int newColorRes)`
 
 Sets the color for the text in the boxes.
 
- * **Parameters:** `newColorRes` — The resource for new ColorStateList to use for the boxes where the
-
-     code characters are shown. Use <code>state_focused</code> to apply
-
-     different customization to a box when it is active
+ * **Parameters:** `newColorRes` — The resource for new ColorStateList to use for the boxes where the code characters are shown. Use <code>state_focused</code> to apply different customization to a box when it is active
  * **See also:** R.attr#otp_boxTextColor
 
 ### `public void setBoxTextColor(@ColorInt int newColor)`
 
 Sets the color for the text in the boxes.
 
- * **Parameters:** `newColor` — The new color to use for the boxes where the code
-
-     characters are shown. Use <code>state_focused</code> to apply
-
-     different customization to a box when it is active
+ * **Parameters:** `newColor` — The new color to use for the boxes where the code characters are shown. Use <code>state_focused</code> to apply different customization to a box when it is active
  * **See also:** R.attr#otp_boxTextColor
 
 ### `public void setBoxTextColorStateList(final @NonNull ColorStateList newColorStateList)`
 
 Sets the color for the text in the boxes.
 
- * **Parameters:** `newColorStateList` — The new ColorStateList to use for the boxes where the code
-
-     characters are shown. Use <code>state_focused</code> to apply
-
-     different customization to a box when it is active
+ * **Parameters:** `newColorStateList` — The new ColorStateList to use for the boxes where the code characters are shown. Use <code>state_focused</code> to apply different customization to a box when it is active
  * **See also:** R.attr#otp_boxTextColor
 
 ### `@Px public float getBoxTextSize()`
@@ -331,20 +313,14 @@ Sets the text in the view. If the view is set to be masked, the text will not be
 
 Gets the characters currently in the view mapped to the position they occupy, 0-indexed.
 
- * **Returns:** A SparseArray holding the Characters currently in the view mapped to
-
-     the position they occupy, 0-indexed. If a box is empty, the corresponding index will be missing
-
-     from the object
+ * **Returns:** A SparseArray holding the Characters currently in the view mapped to the position they occupy, 0-indexed. If a box is empty, the corresponding index will be missing from the object
  * **See also:** R.attr#otp_text
 
 ### `public void setTextRaw(final @NonNull SparseArray<Character> newTextRaw)`
 
 Sets the characters currently in the boxes.
 
- * **Parameters:** `newTextRaw` — A SparseArray of Character mapping the contents for each box
-
-     to the index of that box (0-indexed) in the view
+ * **Parameters:** `newTextRaw` — A SparseArray of Character mapping the contents for each box to the index of that box (0-indexed) in the view
  * **See also:** R.attr#otp_text
 
 ### `public boolean isMasked()`
@@ -357,9 +333,7 @@ Gets the masked state of the view.
 
 Sets the masked state of the view.
 
- * **Parameters:** `newMasked` — <value>true</value> to mask the content in the view. <value>false</value> to
-
-     un-mask it
+ * **Parameters:** `newMasked` — <value>true</value> to mask the content in the view. <value>false</value> to un-mask it
 
 ### `@Nullable public Drawable getBoxMask()`
 
@@ -379,9 +353,7 @@ Sets the color to be used as a mask for the boxes.
 
 Sets the drawable to be used as a mask for the boxes.
 
- * **Parameters:** `newDrawableRes` — A resource pointing to the new Drawable to be as a mask for the
-
-     boxes
+ * **Parameters:** `newDrawableRes` — A resource pointing to the new Drawable to be as a mask for the boxes
  * **See also:** R.attr#otp_boxMask
 
 ### `public void setBoxMask(@ColorInt int newColor)`
@@ -424,9 +396,7 @@ Adds an OtpInputListener to listen for input changes if it isn't already registe
 Removes a previously registered OtpInputListener, if it is indeed registered.
 
  * **Parameters:** `listener` — The OtpInputListener to unregister
- * **Returns:** <code>true</code> if the listener was found among the registered ones (and, therefore,
-
-     unregistered). <code>false</code> otherwise
+ * **Returns:** <code>true</code> if the listener was found among the registered ones (and, therefore, unregistered). <code>false</code> otherwise
  * **See also:** #registerOtpInputListener(OtpInputListener)
 
 ### `public boolean requestFocus(int direction, final @Nullable Rect previouslyFocusedRect)`
