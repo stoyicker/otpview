@@ -209,7 +209,7 @@ Sets the Drawable to be used as a background for the boxes.
  * **Parameters:** `newDrawable` — The new Drawable to be used as a background for the boxes
  * **See also:** R.attr#otp_boxBackground
 
-### `@SuppressLint("KotlinPropertyAccess")`
+### `public ColorStateList getBoxTextColor()`
 
 Gets the color for the text in the boxes.
 
