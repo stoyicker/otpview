@@ -23,8 +23,6 @@ dependencies {
 | **Customizable attributes via XML**              	| All                     	                                                                                        |
 | **Customizable attributes after inflation**    	| All                     	                                                                                        |
 ## FAQ
-### ProGuard/DexGuard/R8
-The library includes its own rules. Nothing for you to do.
 ### Transitive dependencies/apk bloat?
 None! The library only depends on a small set of annotations and constants needed to offer proper
 support for autocomplete as well as for Kotlin.
