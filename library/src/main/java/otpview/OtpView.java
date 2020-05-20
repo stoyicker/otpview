@@ -940,7 +940,6 @@ public final class OtpView extends LinearLayout {
       int srcChildIndex,
       final @Nullable Character addition,
       final @NonNull CharSequence remaining) {
-    final int childCount = getChildCount();
     // If srcChildIndex points to the last child or we're done with this box but it remains empty,
     // make it drop focus but do not give it to the next one because (1) it is empty or (2) the next
     // one might have text and we do not want to delete it
@@ -948,8 +947,8 @@ public final class OtpView extends LinearLayout {
       requestFocus();
     } else {
       final View nextChild = getChildAt(srcChildIndex + 1);
-      if (remaining.length() > 0) {
-        // If there are chars left, pass them over
+      if (remaining.length() > 0 && nextChild != null) {
+        // If there are chars left and we have room, pass them over
         ((TextView) nextChild).setText(remaining);
       } else {
         // Otherwise try to focus the first empty child, if any
