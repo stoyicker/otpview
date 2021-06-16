@@ -64,6 +64,8 @@ jobs:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
+      - attach_workspace:
+          at: .
       - run:
           name: Decript GPG secret keyring
           command: openssl aes-256-cbc -md sha512 -iter 100000 -d -in secring.gpg.enc -out secring.gpg -k $GPG_SECRET_DECRIPTION_KEY
