@@ -53,7 +53,7 @@ lint.onlyIf {
 
 repositories {
   google()
-  jcenter()
+  mavenCentral()
 }
 
 dependencies {
