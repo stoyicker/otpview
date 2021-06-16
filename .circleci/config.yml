@@ -70,12 +70,8 @@ jobs:
           command: openssl aes-256-cbc -md sha512 -iter 100000 -d -in secring.gpg.enc -out secring.gpg -k $GPG_SECRET_DECRIPTION_KEY
           when: always
       - run:
-          name: Upload annotations to Maven Central
+          name: Upload library to Maven Central
           command: ./gradlew :annotations:publishReleasePublicationToSonatypeRepository --no-daemon --no-build-cache --refresh-dependencies
-          when: always
-      - run:
-          name: Upload processor-java to Maven Central
-          command: ./gradlew :processor-java:publishReleasePublicationToSonatypeRepository --no-daemon --no-build-cache --refresh-dependencies
           when: always
       - run:
           name: Close and release staging repository in Nexus
