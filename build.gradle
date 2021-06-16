@@ -20,3 +20,10 @@ task clean {
     delete "$rootDir/build"
   }
 }
+
+nexusStaging {
+  packageGroup = 'com.github.stoyicker.otpview'
+  stagingProfileId = "$System.env.OSS_STAGING_PROFILE_ID"
+  username = "$System.env.OSS_USER"
+  password = "$System.env.OSS_PASSWORD"
+}
