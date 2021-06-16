@@ -71,4 +71,3 @@ gradle.projectsEvaluated {
     options.compilerArgs << "-Xlint:all"
   }
 }
-
