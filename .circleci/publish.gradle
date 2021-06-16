@@ -71,8 +71,6 @@ publishing {
   }
 }
 
-publishLibraryPublicationToSonatypeRepository.dependsOn(assemble)
-
 signing {
   sign publishing.publications
 }
