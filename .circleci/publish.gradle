@@ -30,7 +30,7 @@ publishing {
     library(MavenPublication) {
       artifactId project.name
       version project.version
-      artifact "${project.rootDir}/library-release.aar"
+      artifact "${project.buildDir}/outputs/aar/library-release.aar"
       artifact sourcesJar
       artifact javadocJar
       groupId "com.github.stoyicker.otpview"
@@ -70,6 +70,8 @@ publishing {
     }
   }
 }
+
+publish.dependsOn(assemble)
 
 signing {
   sign publishing.publications
