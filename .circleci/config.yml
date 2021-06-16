@@ -10,7 +10,6 @@ jobs:
       - run: ./gradlew :library:assemble
       - store_artifacts:
           path: library/build/outputs/aar/library-release.aar
-          destination: library-release.aar
   test_library:
     docker:
       - image: circleci/android:api-29
