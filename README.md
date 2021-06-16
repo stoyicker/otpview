@@ -3,10 +3,10 @@
 ### Check out the sample app on [the releases page](https://github.com/stoyicker/otpview/releases/latest) or on [Google Play](https://play.google.com/store/apps/details?id=otpview.demo)!
 [![CircleCI](https://circleci.com/gh/stoyicker/otpview.svg?style=svg)](https://circleci.com/gh/stoyicker/otpview)
 ## Usage
-[ ![Download](https://api.bintray.com/packages/stoyicker/otpview/library/images/download.svg) ](https://search.maven.org/search?q=g:com.github.stoyicker.otpview)
+[ ![Download](https://search.maven.org/search?q=g:com.github.stoyicker.otpview)
 ```groovy
 repositories {
-  jcenter()
+  mavenCentral()
 }
 dependencies {
   implementation "com.github.stoyicker.otpview:library:<version>"

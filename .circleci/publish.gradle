@@ -70,32 +70,11 @@ publishing {
   }
 }
 
-bintray {
-  user = "$System.env.BINTRAY_USER"
-  key = "$System.env.BINTRAY_API_KEY"
-  publications = ["library"]
-  publish = true
-  pkg {
-    repo = "otpview"
-    name = project.name
-    vcsUrl = "https://github.com/stoyicker/otpview"
-    licenses = ["MIT"]
-    desc = "A lightweight, highly-customizable and reliable OTP input field for Android"
-    publicDownloadNumbers = true
-    githubRepo = "stoyicker/otpview"
-    websiteUrl = "https://github.com/stoyicker/otpview"
-    issueTrackerUrl = "https://github.com/stoyicker/otpview/issues"
-    version {
-      name = project.version
-      vcsTag = project.version
-      released = new Date()
-      gpg {
-        sign = true
-      }
-      mavenCentralSync {
-        user = "$System.env.OSS_USER"
-        password = "$System.env.OSS_PASSWORD"
-      }
-    }
-  }
+signing {
+  sign publishing.publications
 }
+
+ext["signing.keyId"] = "$System.env.GPG_KEYID"
+ext["signing.password"] = "$System.env.GPG_PASSWORD"
+ext["signing.secretKeyRingFile"] = "$rootProject.rootDir/secring.gpg"
+

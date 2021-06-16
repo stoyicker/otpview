@@ -58,15 +58,29 @@ jobs:
       - run: ./gradlew library:assembleRelease
       - run: ./gradlew demo:assembleRelease
       - run: ./.circleci/release_github.sh
-  release_library_on_bintray:
+  release_on_central:
     docker:
       - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
-      - run: ./gradlew library:assembleRelease
-      - run: ./gradlew library:bintrayUpload
+      - run:
+          name: Decript GPG secret keyring
+          command: openssl aes-256-cbc -md sha512 -iter 100000 -d -in secring.gpg.enc -out secring.gpg -k $GPG_SECRET_DECRIPTION_KEY
+          when: always
+      - run:
+          name: Upload annotations to Maven Central
+          command: ./gradlew :annotations:publishReleasePublicationToSonatypeRepository --no-daemon --no-build-cache --refresh-dependencies
+          when: always
+      - run:
+          name: Upload processor-java to Maven Central
+          command: ./gradlew :processor-java:publishReleasePublicationToSonatypeRepository --no-daemon --no-build-cache --refresh-dependencies
+          when: always
+      - run:
+          name: Close and release staging repository in Nexus
+          command: ./gradlew closeAndReleaseRepository
+          when: always
   release_demo_on_google_play:
     docker:
       - image: circleci/android:api-29
@@ -137,16 +151,6 @@ workflows:
             - ensure_release_allowed
             - test_library
             - test_demo
-      - release_library_on_bintray:
-          context: otpview_release_bintray_oss
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /.*/
-          requires:
-            - ensure_release_allowed
-            - test_library
       - release_demo_on_google_play:
           context: otpview_release_google_play
           filters:
