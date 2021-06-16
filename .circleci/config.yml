@@ -71,7 +71,7 @@ jobs:
           when: always
       - run:
           name: Upload library to Maven Central
-          command: ./gradlew :annotations:publishReleasePublicationToSonatypeRepository --no-daemon --no-build-cache --refresh-dependencies
+          command: ./gradlew :library:publishReleasePublicationToSonatypeRepository --no-daemon --no-build-cache --refresh-dependencies
           when: always
       - run:
           name: Close and release staging repository in Nexus
