@@ -140,6 +140,16 @@ workflows:
               ignore: /.*/
             tags:
               only: /.*/
+      - release_on_central:
+          context: test-accessors_release_mavencentral
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /.*/
+          requires:
+            - ensure_release_allowed
+            - test_library
       - release_on_github:
           context: otpview_release_github
           filters:
