@@ -13,8 +13,9 @@ apply from: Paths.get(rootDir.absolutePath, '.circleci', 'publish.gradle')
 
 final def runningOnCi = System.getenv("CI") != null
 android {
-  buildToolsVersion "29.0.3"
-  compileSdkVersion 29
+  namespace = "org.stoyicker.otpview"
+  buildToolsVersion "34.0.0"
+  compileSdkVersion 34
   buildTypes {
     release {
       minifyEnabled false
@@ -22,8 +23,8 @@ android {
     }
   }
   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_7
-    targetCompatibility JavaVersion.VERSION_1_7
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
   }
   defaultConfig {
     // Depending on the git method locally causes IDE issues
@@ -59,9 +60,9 @@ repositories {
 }
 
 dependencies {
-  compileOnly "androidx.annotation:annotation:1.1.0"
+  compileOnly "androidx.annotation:annotation:1.6.0"
   // From here we only "need" a constant to inline it, so no need for it to be transitive
-  compileOnly("androidx.autofill:autofill:1.0.0") {
+  compileOnly("androidx.autofill:autofill:1.1.0") {
     transitive = false
   }
 }

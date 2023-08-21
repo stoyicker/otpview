@@ -523,6 +523,7 @@ public final class OtpView extends LinearLayout {
    * @return The current input type of the view, as specified by {@link BoxInputType}
    * @see R.attr#otp_boxInputType
    */
+  @SuppressLint("WrongConstant") // False positive
   @Keep
   @BoxInputType
   public int getBoxInputType() {
@@ -553,7 +554,7 @@ public final class OtpView extends LinearLayout {
    */
   @Keep
   @NonNull
-  public String getText() {
+  public CharSequence getText() {
     final SparseArray<Character> text = stateText.getValue();
     final int childCount = getChildCount();
     final StringBuilder ret = new StringBuilder();
@@ -800,6 +801,7 @@ public final class OtpView extends LinearLayout {
     return false;
   }
 
+  @SuppressLint("WrongConstant") // False positive
   @Override
   protected void onRestoreInstanceState(final @NonNull Parcelable state) {
     super.onRestoreInstanceState(state);
@@ -826,6 +828,7 @@ public final class OtpView extends LinearLayout {
     isRestoringInstanceState = false;
   }
 
+  @SuppressLint("WrongConstant") // False positive
   @Override
   @NonNull
   protected Parcelable onSaveInstanceState() {
@@ -857,6 +860,7 @@ public final class OtpView extends LinearLayout {
 
   @RequiresApi(api = Build.VERSION_CODES.O)
   @Override
+  @NonNull
   public String[] getAutofillHints() {
     return AutoFillConstants.AUTOFILL_HINTS;
   }

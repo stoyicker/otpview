@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build_library:
     docker:
-      - image: circleci/android:api-29
+      - image: cimg/android:2023.08.1
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
@@ -12,7 +12,7 @@ jobs:
           path: library/build/outputs/aar/library-release.aar
   test_library:
     docker:
-      - image: circleci/android:api-29
+      - image: cimg/android:2023.08.1
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
@@ -22,7 +22,7 @@ jobs:
           path: library/build/test-results/
   build_demo:
     docker:
-      - image: circleci/android:api-29
+      - image: cimg/android:2023.08.1
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
@@ -33,7 +33,7 @@ jobs:
           destination: demo-release.apk
   test_demo:
     docker:
-      - image: circleci/android:api-29
+      - image: cimg/android:2023.08.1
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
@@ -49,7 +49,7 @@ jobs:
       - run: ./.circleci/ensure_release_allowed.sh
   release_on_github:
     docker:
-      - image: circleci/android:api-29
+      - image: cimg/android:2023.08.1
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
@@ -59,7 +59,7 @@ jobs:
       - run: ./.circleci/release_github.sh
   release_on_central:
     docker:
-      - image: circleci/android:api-29
+      - image: cimg/android:2023.08.1
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
@@ -80,7 +80,7 @@ jobs:
           when: always
   release_demo_on_google_play:
     docker:
-      - image: circleci/android:api-29
+      - image: cimg/android:2023.08.1
     environment:
       JVM_OPTS: -Xmx3200m
     steps:

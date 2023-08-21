@@ -1,13 +1,13 @@
 buildscript {
   ext {
-    kotlinVersion = "1.3.72"
+    kotlinVersion = "1.8.20"
   }
   repositories {
     google()
     mavenCentral()
   }
   dependencies {
-    classpath "com.android.tools.build:gradle:3.6.3"
+    classpath "com.android.tools.build:gradle:8.1.0"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0"
   }
@@ -15,7 +15,7 @@ buildscript {
 
 apply plugin: "io.codearte.nexus-staging"
 
-task clean {
+tasks.register("clean") {
   doLast {
     delete "$rootDir/build"
   }
