@@ -30,7 +30,7 @@ android {
     versionCode runningOnCi ? "git rev-list --count HEAD".execute().text.toInteger() : Integer.MAX_VALUE
     versionName runningOnCi ? "git describe --abbrev=0".execute().text.trim() : String.valueOf(versionCode)
     minSdkVersion 17
-    targetSdkVersion 29
+    targetSdkVersion 34
   }
   dexOptions {
     preDexLibraries false
