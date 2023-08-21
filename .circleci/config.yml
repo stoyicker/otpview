@@ -89,6 +89,14 @@ jobs:
       - run: echo $(git describe --abbrev=0) > demo/src/main/play/release-names/alpha.txt
       - run: openssl aes-256-cbc -d -in api-release.json.enc -out api-release.json -k "$ENCRYPTION_KEY"
       - run: ./gradlew demo:publishReleaseBundle
+  lint:
+    docker:
+      - image: cimg/android:2023.08.1
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - run: ./gradlew lint
 workflows:
   version: 2.1
   test:
@@ -131,6 +139,12 @@ workflows:
               only: /.*/
           requires:
             - build_demo
+      - lint:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /.*/
       - ensure_release_allowed:
           filters:
             branches:
