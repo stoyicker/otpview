@@ -36,5 +36,5 @@ public abstract class SimpleOtpInputListener implements OtpInputListener {
   }
 
   @SuppressWarnings("WeakerAccess") // Won't work with Kotlin
-  public abstract void onFullInput(String charSequence);
+  public abstract void onFullInput(@NonNull String charSequence);
 }

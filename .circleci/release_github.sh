@@ -5,6 +5,8 @@ uploadReleaseToGitHub() {
   git fetch --tags
   THIS_TAG=$(git describe --tags --abbrev=0)
 
+  ./gradlew clean assemble
+
   BODY="{
         \"tag_name\": \"$THIS_TAG\",
         \"target_commitish\": \"master\",

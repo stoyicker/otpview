@@ -1,3 +1,5 @@
+import com.github.triplet.gradle.androidpublisher.ReleaseStatus
+
 buildscript {
   repositories {
     maven {
@@ -5,7 +7,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "com.github.triplet.gradle:play-publisher:2.7.5"
+    classpath "com.github.triplet.gradle:play-publisher:3.8.4"
   }
 }
 
@@ -14,8 +16,9 @@ apply plugin: "kotlin-android"
 
 final def runningOnCi = System.getenv("CI") != null
 android {
-  compileSdkVersion 29
-  buildToolsVersion "29.0.3"
+  namespace = "otpview.demo"
+  compileSdkVersion 34
+  buildToolsVersion "34.0.0"
   signingConfigs {
     release {
       storeFile file("release.keystore")
@@ -32,6 +35,10 @@ android {
       signingConfig signingConfigs.release
     }
   }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
   defaultConfig {
     applicationId "otpview.demo"
     minSdkVersion 17
@@ -45,10 +52,6 @@ android {
       it.ignore = true
     }
   }
-}
-
-lint.onlyIf {
-  false
 }
 
 repositories {
@@ -68,8 +71,8 @@ apply plugin: "com.github.triplet.play"
 play {
   enabled = runningOnCi
   track = "production"
-  releaseStatus = "completed"
-  userFraction = 1
+  releaseStatus = ReleaseStatus.COMPLETED
+  userFraction = 1D
   serviceAccountCredentials = file("${project.rootDir.absolutePath}/api-release.json")
   defaultToAppBundles = true
 }
